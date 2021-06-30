@@ -11,7 +11,7 @@ var app = {
 var onFormSubmit = function onFormSubmit(e) {
   e.preventDefault();
 
-  var option = e.target.elements.option; // Contains all elements indexed by name
+  var option = e.target.elements.option.value; // Contains all elements indexed by name
 
   if (option) {
     app.options.push(option);
@@ -61,16 +61,13 @@ var render = function render(e) {
     React.createElement(
       'ol',
       null,
-      React.createElement(
-        'li',
-        null,
-        'Item one'
-      ),
-      React.createElement(
-        'li',
-        null,
-        'Item two'
-      )
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       'form',

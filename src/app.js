@@ -9,7 +9,7 @@ const app = {
 const onFormSubmit = (e) => {
 e.preventDefault()
 
-const option = e.target.elements.option // Contains all elements indexed by name
+const option = e.target.elements.option.value // Contains all elements indexed by name
 
 if (option) {
   app.options.push(option)
@@ -36,8 +36,9 @@ const render = (e) => {
       <p>{app.options.length}</p>
       <button onClick={onRemoveAll}>Remove All</button>
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {
+          app.options.map(option => <li key={option}>{option}</li>)
+        }
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option"/>
